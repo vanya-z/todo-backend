@@ -1,0 +1,3 @@
+server="mongodb://user:password@ds117590.mlab.com:17590/todo-list"
+database="todo-list"
+collection="tasks"
