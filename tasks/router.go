@@ -22,19 +22,19 @@ var routes = Routes{
   Route{
     "List of tasks",
     "GET",
-    "/tasks",
+    "/api/v1/tasks",
     AllTasksEndPoint,
   },
   Route{
     "Create a task",
     "POST",
-    "/tasks",
+    "/api/v1/tasks",
     CreateTaskEndPoint,
   },
   Route{
     "Toggle a task",
     "PUT",
-    "/tasks/{id}/toggle",
+    "/api/v1/tasks/{id}/toggle",
     ToggleTaskEndPoint,
   },
 }
