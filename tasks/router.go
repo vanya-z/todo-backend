@@ -32,10 +32,16 @@ var routes = Routes{
     CreateTaskEndPoint,
   },
   Route{
-    "Toggle a task",
+    "Toggle the task",
     "PUT",
     "/api/v1/tasks/{id}/toggle",
     ToggleTaskEndPoint,
+  },
+  Route{
+    "Delete the task",
+    "DELETE",
+    "/api/v1/tasks/{id}",
+    DeleteTaskEndPoint,
   },
 }
 

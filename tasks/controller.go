@@ -37,9 +37,8 @@ func CreateTaskEndPoint(w http.ResponseWriter, r *http.Request) {
   respondWithJson(w, http.StatusCreated, task)
 }
 
-// PUT toggle a task
+// PUT toggle the task
 func ToggleTaskEndPoint(w http.ResponseWriter, r *http.Request) {
-  // var task Task
   params := mux.Vars(r)
   task, err := dbConfig.FindById(params["id"])
   if err != nil {
@@ -48,6 +47,21 @@ func ToggleTaskEndPoint(w http.ResponseWriter, r *http.Request) {
   }
   task.Completed = !task.Completed
   if err := dbConfig.Update(task); err != nil {
+    respondWithError(w, http.StatusInternalServerError, err.Error())
+    return
+  }
+  respondWithJson(w, http.StatusOK, task)
+}
+
+// DELETE remove the task
+func DeleteTaskEndPoint(w http.ResponseWriter, r *http.Request) {
+  params := mux.Vars(r)
+  task, err := dbConfig.FindById(params["id"])
+  if err != nil {
+    respondWithError(w, http.StatusBadRequest, "Invalid Task ID")
+    return
+  }
+  if err := dbConfig.Delete(task); err != nil {
     respondWithError(w, http.StatusInternalServerError, err.Error())
     return
   }
