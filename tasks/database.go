@@ -40,7 +40,7 @@ func (c *DBConfig) Connect() {
 // Find list of tasks
 func (c *DBConfig) FindAll() ([]Task, error) {
   var tasks []Task
-  err := db.C(c.Collection).Find(bson.M{}).All(&tasks)
+  err := db.C(c.Collection).Find(bson.M{}).Sort("-_id").All(&tasks)
   return tasks, err
 }
 
